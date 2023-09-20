@@ -53,12 +53,6 @@ class WeatherStation {
     }
   }
 
+ private:
   std::unique_ptr<TemperatureSensor> tempSensor_;
 };
-
-int main() {
-  WeatherStation{TemperatureSensorModel::SensorA}.printWeather();
-  WeatherStation{TemperatureSensorModel::SensorB}.printWeather();
-  WeatherStation{TemperatureSensorModel::SensorC}.printWeather();
-  return 0;
-}
