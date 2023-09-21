@@ -6,15 +6,20 @@ class TemperatureSensor {
   float getTemperature() { return 22.0; }
 };
 
+struct WeatherReport {
+  const float temperature;
+};
+
 class WeatherStation {
  public:
-  void printWeather() {
-    std::cout << "Temperature: " << TemperatureSensor{}.getTemperature() << "°C"
-              << std::endl;
+  WeatherReport getWeatherReport() {
+    return WeatherReport{.temperature = TemperatureSensor{}.getTemperature()};
   }
 };
 
 int main() {
-  WeatherStation{}.printWeather();
+  std::cout << "Temperature: "
+            << WeatherStation{}.getWeatherReport().temperature << "°C"
+            << std::endl;
   return 0;
 }

@@ -28,14 +28,17 @@ class TemperatureSensorC : public TemperatureSensor {
   float getTemperature() override { return 22.3734; }
 };
 
+struct WeatherReport {
+  const float temperature;
+};
+
 class WeatherStation {
  public:
   WeatherStation(TemperatureSensorModel tempSensorModel)
       : tempSensor_{createSensor(tempSensorModel)} {}
 
-  void printWeather() {
-    std::cout << "Temperature: " << tempSensor_->getTemperature() << "°C"
-              << std::endl;
+  WeatherReport getWeatherReport() {
+    return WeatherReport{.temperature = tempSensor_->getTemperature()};
   }
 
  private:
@@ -54,9 +57,16 @@ class WeatherStation {
   std::unique_ptr<TemperatureSensor> tempSensor_;
 };
 
+void printWeather(WeatherReport report) {
+  std::cout << "Temperature: " << report.temperature << "°C" << std::endl;
+}
+
 int main() {
-  WeatherStation{TemperatureSensorModel::SensorA}.printWeather();
-  WeatherStation{TemperatureSensorModel::SensorB}.printWeather();
-  WeatherStation{TemperatureSensorModel::SensorC}.printWeather();
+  printWeather(
+      WeatherStation{TemperatureSensorModel::SensorA}.getWeatherReport());
+  printWeather(
+      WeatherStation{TemperatureSensorModel::SensorB}.getWeatherReport());
+  printWeather(
+      WeatherStation{TemperatureSensorModel::SensorC}.getWeatherReport());
   return 0;
 }

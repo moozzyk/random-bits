@@ -28,6 +28,10 @@ class TemperatureSensorC : public TemperatureSensor {
   float getTemperature() override { return 22.3734; }
 };
 
+struct WeatherReport {
+  const float temperature;
+};
+
 class WeatherStation {
  public:
   WeatherStation(
@@ -36,9 +40,8 @@ class WeatherStation {
           sensorFactory = createSensor)
       : tempSensor_{sensorFactory(tempSensorModel)} {}
 
-  void printWeather() {
-    std::cout << "Temperature: " << tempSensor_->getTemperature() << "°C"
-              << std::endl;
+  WeatherReport getWeatherReport() {
+    return WeatherReport{.temperature = tempSensor_->getTemperature()};
   }
 
   static std::unique_ptr<TemperatureSensor> createSensor(

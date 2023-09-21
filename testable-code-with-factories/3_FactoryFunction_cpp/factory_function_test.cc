@@ -18,7 +18,8 @@ TEST(FactoryFunctionTest, CustomFactory) {
 
   auto ws = WeatherStation{TemperatureSensorModel::SensorA,
                            [&](auto) { return std::move(tempSensor); }};
-  ws.printWeather();
+
+  ASSERT_EQ(ws.getWeatherReport().temperature, 15);
 }
 
 TEST(FactoryFunctionTest, FactoryTest) {

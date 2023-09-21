@@ -2,10 +2,16 @@
 #include <string>
 
 #include "factory_function.h"
+void printWeather(WeatherReport report) {
+  std::cout << "Temperature: " << report.temperature << "°C" << std::endl;
+}
 
 int main() {
-  WeatherStation{TemperatureSensorModel::SensorA}.printWeather();
-  WeatherStation{TemperatureSensorModel::SensorB}.printWeather();
-  WeatherStation{TemperatureSensorModel::SensorC}.printWeather();
+  printWeather(
+      WeatherStation{TemperatureSensorModel::SensorA}.getWeatherReport());
+  printWeather(
+      WeatherStation{TemperatureSensorModel::SensorB}.getWeatherReport());
+  printWeather(
+      WeatherStation{TemperatureSensorModel::SensorC}.getWeatherReport());
   return 0;
 }
