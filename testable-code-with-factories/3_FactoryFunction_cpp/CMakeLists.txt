@@ -23,6 +23,7 @@ add_executable(
 target_link_libraries(
   factory_function_test
   GTest::gtest_main
+  gmock_main
 )
 
 include(GoogleTest)
