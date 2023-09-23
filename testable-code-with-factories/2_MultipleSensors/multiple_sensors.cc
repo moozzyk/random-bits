@@ -34,26 +34,25 @@ struct WeatherReport {
 
 class WeatherStation {
  public:
-  WeatherStation(TemperatureSensorModel tempSensorModel)
-      : tempSensor_{createSensor(tempSensorModel)} {}
+  WeatherStation(TemperatureSensorModel tempSensorModel) {
+    switch (tempSensorModel) {
+      case TemperatureSensorModel::SensorA:
+        tempSensor_ = std::make_unique<TemperatureSensorA>();
+        break;
+      case TemperatureSensorModel::SensorB:
+        tempSensor_ = std::make_unique<TemperatureSensorB>();
+        break;
+      case TemperatureSensorModel::SensorC:
+        tempSensor_ = std::make_unique<TemperatureSensorC>();
+        break;
+    }
+  }
 
   WeatherReport getWeatherReport() {
     return WeatherReport{.temperature = tempSensor_->getTemperature()};
   }
 
  private:
-  static std::unique_ptr<TemperatureSensor> createSensor(
-      TemperatureSensorModel tempSensorModel) {
-    switch (tempSensorModel) {
-      case TemperatureSensorModel::SensorA:
-        return std::make_unique<TemperatureSensorA>();
-      case TemperatureSensorModel::SensorB:
-        return std::make_unique<TemperatureSensorB>();
-      case TemperatureSensorModel::SensorC:
-        return std::make_unique<TemperatureSensorC>();
-    }
-  }
-
   std::unique_ptr<TemperatureSensor> tempSensor_;
 };
 
