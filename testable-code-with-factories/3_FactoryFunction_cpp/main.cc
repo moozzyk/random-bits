@@ -2,6 +2,7 @@
 #include <string>
 
 #include "factory_function.h"
+
 void printWeather(WeatherReport report) {
   std::cout << "Temperature: " << report.temperature << "°C" << std::endl;
 }
