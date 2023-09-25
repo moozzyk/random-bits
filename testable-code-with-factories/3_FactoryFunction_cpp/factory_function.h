@@ -1,5 +1,8 @@
 #pragma once
 
+#include <functional>
+#include <memory>
+
 enum class TemperatureSensorModel {
   SensorA,
   SensorB,

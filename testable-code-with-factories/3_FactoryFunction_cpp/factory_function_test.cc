@@ -23,7 +23,10 @@ TEST(FactoryFunctionTest, CustomFactory) {
 }
 
 TEST(FactoryFunctionTest, FactoryTest) {
-  auto ws = WeatherStation{TemperatureSensorModel::SensorA};
   ASSERT_TRUE(dynamic_cast<TemperatureSensorA*>(
       WeatherStation::createSensor(TemperatureSensorModel::SensorA).get()));
+  ASSERT_TRUE(dynamic_cast<TemperatureSensorB*>(
+      WeatherStation::createSensor(TemperatureSensorModel::SensorB).get()));
+  ASSERT_TRUE(dynamic_cast<TemperatureSensorC*>(
+      WeatherStation::createSensor(TemperatureSensorModel::SensorC).get()));
 }
