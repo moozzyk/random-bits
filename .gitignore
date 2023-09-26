@@ -34,3 +34,6 @@
 *.dSYM/
 build/
 
+# Java
+*.class
+
