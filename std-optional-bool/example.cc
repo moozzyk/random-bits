@@ -72,7 +72,7 @@ int main() {
     // Use `.value_or()` if you can provide a sensible default value if the
     // variable is not initialized.
     std::optional<bool> isMorning = std::nullopt;
-    if (isMorning.value_or(false)) {
+    if (!isMorning.value_or(false)) {
       std::cout << "It's not morning anymore..." << std::endl;
     } else {
       std::cout << "Good Morning!" << std::endl;
