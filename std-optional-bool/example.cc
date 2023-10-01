@@ -28,9 +28,7 @@ int main() {
     // Same behavior for non-bool types.
     std::optional<int> n = 0;
     if (n) {
-      std::cout << "Condition evaluated to true" << std::endl;
-    } else {
-      std::cout << "Condition evaluated to false" << std::endl;
+      std::cout << "n is not 0" << std::endl;
     }
   }
 
