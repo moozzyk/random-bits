@@ -35,6 +35,17 @@ int main() {
   }
 
   {
+    // Unwrap `std::optional<bool>` - throws `std::bad_optional_access` if the
+    // value is not initialized
+    std::optional<bool> isMorning = false;
+    if (isMorning.value()) {
+      std::cout << "Good Morning!" << std::endl;
+    } else {
+      std::cout << "Good Afternoon!" << std::endl;
+    }
+  }
+
+  {
     // Dereference `std::optional` - only works if the variable is guaranteed to
     // be initialized otherwise UB (undefined behavior)
     std::optional<bool> isMorning = false;
